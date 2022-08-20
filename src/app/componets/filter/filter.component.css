@@ -1,0 +1,14 @@
+.filter-wrapper{
+    position: relative;
+    display: block;
+    height: 700px;
+    width: 400px;
+    border: 2px solid grey;
+}
+
+.reset{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}

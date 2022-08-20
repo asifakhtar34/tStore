@@ -1,0 +1,35 @@
+<div class="filter-wrapper">
+    <div class="reset" (click)="reset()">Reset Filters</div>
+ <fieldset>
+    <legend>Colors</legend>
+    <div *ngFor="let color of colours">
+        <input  type="checkbox" [name]="color" [id]="color" [value]="color" [checked]="filterTshirt.controls['colour'].value.includes(color)" (click)="onChange($event, 'colour', color)">
+     <label [for]="color">{{color}}</label>
+    </div>
+
+ </fieldset>
+ <fieldset>
+    <legend>Gender</legend>
+    <div *ngFor="let g of gender">
+        <input  type="checkbox" [name]="g" [id]="g" [value]="g" [checked]="filterTshirt.controls['gender'].value.includes(g)" (click)="onChange($event, 'gender', g)" >
+     <label [for]="g">{{g}}</label>
+    </div>
+
+ </fieldset>
+ <fieldset>
+    <legend>Price</legend>
+    <div *ngFor="let price of prices">
+        <input  type="checkbox" [name]="price.displayName" [id]="price.displayName" [value]="price.value" [checked]="filterTshirt.controls['price'].value.includes(price.value)" (click)="onChange($event, 'price', price.value)">
+     <label [for]="price.displayName">{{price.displayName}}</label>
+    </div>
+
+ </fieldset>
+ <fieldset>
+    <legend>Type</legend>
+    <div *ngFor="let type of types">
+        <input  type="checkbox" [name]="type" [id]="type" [value]="type" [checked]="filterTshirt.controls['type'].value.includes(type)" (click)="onChange($event, 'type', type)">
+     <label [for]="type">{{type}}</label>
+    </div>
+
+ </fieldset>
+</div>

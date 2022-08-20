@@ -1,0 +1,29 @@
+<div class="d-flex">
+    <div>
+        <app-filter (filterValues)="filter($event)"></app-filter>
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="filterText" (ngModelChange)="searchTerm$.next($event)">
+        <button (click)="search()">Search</button>
+        <div class="d-flex flex-wrap justify-content-space-between">
+            <div *ngFor="let shirt of filteredtShirts">
+                <div class="card" style="width: 14rem;">
+
+                    <img [src]="shirt.imageURL" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{shirt.name}}</h5>
+                        <p class="card-text">Price: {{shirt.price}}</p>
+                        <a *ngIf="!shirt.value" class="btn btn-primary" (click)="addToCart(shirt)">Add to Cart</a>
+                        <div *ngIf="shirt.value">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">-</button>
+                                <div class="btn">{{1}}</div>
+                                <button type="button" class="btn btn-outline-primary">+</button>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
