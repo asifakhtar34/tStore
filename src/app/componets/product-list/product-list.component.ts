@@ -60,7 +60,7 @@ export class ProductListComponent implements OnInit {
   // }
 
   search(){
-   this.filteredtShirts = this.filteredtShirts.filter((item: Tshirt)=> this.filterText.includes(item.type.toLocaleLowerCase()) || this.filterText.includes(item.color.toLocaleLowerCase()) || item.name.toLocaleLowerCase().includes(this.filterText))
+   this.filteredtShirts = this.tShirts.filter((item: Tshirt)=> this.filterText.toLocaleLowerCase().includes(item.type.toLocaleLowerCase()) || this.filterText.includes(item.color.toLocaleLowerCase()) || item.name.toLocaleLowerCase().includes(this.filterText))
 
   //  this.filteredtShirts = this.tShirts.filter((item: Tshirt)=> item.name.toLocaleLowerCase().includes(this.filterText))
   }
