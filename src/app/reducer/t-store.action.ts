@@ -37,3 +37,8 @@ export class ClearCartSuccess implements Action {
   readonly type: string = CartActionTypes.CLEAR_CART_SUCCESS;
   constructor(public response: any[]) {}
 }
+
+
+// "@ngrx/effects": "^14.2.0",
+//     "@ngrx/store": "^14.2.0",
+//     "@ngrx/store-devtools": "^14.2.0",
