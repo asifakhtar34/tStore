@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filter',
@@ -8,7 +8,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class FilterComponent implements OnInit {
   @Output () filterValues = new EventEmitter<any>();
-  filterTshirt!: FormGroup;
+  filterTshirt!: UntypedFormGroup;
   colours: Array<string> = ['Red', 'Green', 'Blue'];
   gender: Array<string> = ['Men', 'Woman'];
   prices: Array<any> = [
@@ -18,7 +18,7 @@ export class FilterComponent implements OnInit {
   ];
   types: Array<string> = ['Polo', 'Hoodie', 'Basic'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.filterTshirt = this.fb.group({
       colour: this.fb.array([]),
       gender: this.fb.array([]),
@@ -31,9 +31,9 @@ export class FilterComponent implements OnInit {
 
   onChange(event: Event, formArrayName: string, value: any){
     let isChecked = (<HTMLInputElement>event.target).checked;
-    let formControl = <FormArray>this.filterTshirt.controls[formArrayName];
+    let formControl = <UntypedFormArray>this.filterTshirt.controls[formArrayName];
     if(isChecked){
-      formControl.push(new FormControl(value));
+      formControl.push(new UntypedFormControl(value));
     } else {
       let index = formControl.controls.findIndex((x) => x.value == value);
       formControl.removeAt(index);
@@ -45,7 +45,7 @@ export class FilterComponent implements OnInit {
   reset(){
     this.filterTshirt.reset();
     ['colour', 'gender', 'price', 'type'].forEach(control=>{
-      let fC = <FormArray>this.filterTshirt.controls[control]
+      let fC = <FormArray<any>>this.filterTshirt.controls[control]
       this.filterTshirt.controls[control].value.forEach((val: string) => {
         let index = fC.controls.findIndex((x:any) => x.value == val);
         fC.removeAt(index);
